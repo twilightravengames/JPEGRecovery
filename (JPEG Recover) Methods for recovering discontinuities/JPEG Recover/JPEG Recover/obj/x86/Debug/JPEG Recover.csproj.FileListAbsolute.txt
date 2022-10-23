@@ -1,0 +1,5 @@
+C:\Users\Ted\Documents\Visual Studio 2010\Projects\JPEG Recover\JPEG Recover\bin\Debug\JPEG Recover.exe
+C:\Users\Ted\Documents\Visual Studio 2010\Projects\JPEG Recover\JPEG Recover\bin\Debug\JPEG Recover.pdb
+C:\Users\Ted\Documents\Visual Studio 2010\Projects\JPEG Recover\JPEG Recover\obj\x86\Debug\ResolveAssemblyReference.cache
+C:\Users\Ted\Documents\Visual Studio 2010\Projects\JPEG Recover\JPEG Recover\obj\x86\Debug\JPEG Recover.exe
+C:\Users\Ted\Documents\Visual Studio 2010\Projects\JPEG Recover\JPEG Recover\obj\x86\Debug\JPEG Recover.pdb

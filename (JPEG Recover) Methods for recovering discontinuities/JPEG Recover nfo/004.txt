@@ -1,0 +1,76 @@
+Current Byte is part of a Marker Byte. Second Byte is (in hex): D8
+JPEG_Recover.Markers.SOI
+Byte Counter for (above) second byte is: 2
+Current Byte is part of a Marker Byte. Second Byte is (in hex): E0
+0
+JPEG_Recover.Markers.APP_N
+Byte Counter for (above) second byte is: 4
+Current Byte is part of a Marker Byte. Second Byte is (in hex): E1
+1
+JPEG_Recover.Markers.APP_N
+Byte Counter for (above) second byte is: 22
+Current Byte is part of a Marker Byte. Second Byte is (in hex): 2
+Current Byte is part of a Marker Byte. Second Byte is (in hex): 2
+Current Byte is part of a Marker Byte. Second Byte is (in hex): D8
+JPEG_Recover.Markers.SOI
+Byte Counter for (above) second byte is: 5028
+Current Byte is part of a Marker Byte. Second Byte is (in hex): DB
+JPEG_Recover.Markers.DQT
+Byte Counter for (above) second byte is: 5030
+Current Byte is part of a Marker Byte. Second Byte is (in hex): DB
+JPEG_Recover.Markers.DQT
+Byte Counter for (above) second byte is: 5099
+Current Byte is part of a Marker Byte. Second Byte is (in hex): C0
+JPEG_Recover.Markers.SOF_0
+Byte Counter for (above) second byte is: 5168
+Current Byte is part of a Marker Byte. Second Byte is (in hex): C4
+JPEG_Recover.Markers.DHT
+Byte Counter for (above) second byte is: 5187
+Current Byte is part of a Marker Byte. Second Byte is (in hex): C4
+JPEG_Recover.Markers.DHT
+Byte Counter for (above) second byte is: 5220
+Current Byte is part of a Marker Byte. Second Byte is (in hex): C4
+JPEG_Recover.Markers.DHT
+Byte Counter for (above) second byte is: 5403
+Current Byte is part of a Marker Byte. Second Byte is (in hex): C4
+JPEG_Recover.Markers.DHT
+Byte Counter for (above) second byte is: 5436
+Current Byte is part of a Marker Byte. Second Byte is (in hex): DA
+JPEG_Recover.Markers.SOS
+Byte Counter for (above) second byte is: 5619
+Current Byte is part of a Marker Byte. Second Byte is (in hex): D9
+JPEG_Recover.Markers.EOI
+Byte Counter for (above) second byte is: 10429
+Current Byte is part of a Marker Byte. Second Byte is (in hex): E1
+1
+JPEG_Recover.Markers.APP_N
+Byte Counter for (above) second byte is: 10432
+Current Byte is part of a Marker Byte. Second Byte is (in hex): DB
+JPEG_Recover.Markers.DQT
+Byte Counter for (above) second byte is: 23337
+Current Byte is part of a Marker Byte. Second Byte is (in hex): DB
+JPEG_Recover.Markers.DQT
+Byte Counter for (above) second byte is: 23406
+Current Byte is part of a Marker Byte. Second Byte is (in hex): C0
+JPEG_Recover.Markers.SOF_0
+Byte Counter for (above) second byte is: 23475
+Current Byte is part of a Marker Byte. Second Byte is (in hex): C4
+JPEG_Recover.Markers.DHT
+Byte Counter for (above) second byte is: 23494
+Current Byte is part of a Marker Byte. Second Byte is (in hex): C4
+JPEG_Recover.Markers.DHT
+Byte Counter for (above) second byte is: 23527
+Current Byte is part of a Marker Byte. Second Byte is (in hex): C4
+JPEG_Recover.Markers.DHT
+Byte Counter for (above) second byte is: 23710
+Current Byte is part of a Marker Byte. Second Byte is (in hex): C4
+JPEG_Recover.Markers.DHT
+Byte Counter for (above) second byte is: 23743
+Current Byte is part of a Marker Byte. Second Byte is (in hex): DA
+JPEG_Recover.Markers.SOS
+Byte Counter for (above) second byte is: 23926
+Current Byte is part of a Marker Byte. Second Byte is (in hex): D9
+JPEG_Recover.Markers.EOI
+Byte Counter for (above) second byte is: 1348497
+Reached End of Stream at byte number:1348497
+Press enter to continue..

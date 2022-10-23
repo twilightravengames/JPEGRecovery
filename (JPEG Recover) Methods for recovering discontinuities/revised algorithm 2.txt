@@ -1,0 +1,59 @@
+Because data can be corrupt in multiple places, it cannot be loaded heirarchically to start. It 
+must be treated sequentially first, run through multiple validation passes, then be inserted into a temporary
+instance of JPEG_File_Tree structure before being reconstructed and output as a 'good' file
+
+Load phase
+---------
+
+1) Loads all marker data in a list (including 'header' data), loads 'middle' data (data not
+part of a marker or header) into a byte buffer, and loads all data (marker segment+ middle data) into a byte buffer
+
+Identification Phase
+--------------------
+
+1) First pass - identification of file using identification probability matrix
+	Identification probability matrix analyzes all APP and JPG codes to determine the file type 
+	(e.g., JFIF, EXIF, etc..) by comparing APP and JPG markers to each other and cross-referencing
+	against a database of known file types. User given probability factor allows for adjustment
+	of 'accuracy' of this pass
+
+2) Second pass - identifies mode of operation (heirarchy, sequential, etc..) in a manner similar to first pass?
+
+3) Third pass - identifies method of encoding (using a method similar to second pass?)
+..?
+
+Validation Phase
+----------------
+
+1) First pass - makes sure data in headers is valid for the file type given above
+2) Second pass - makes sure data in headers is valid for the mode operation given above
+3) Third pass - makes sure data in headers is valid for type of encoding
+..?
+
+---after validation and trimming is complete----
+
+First Reconstruction Phase
+--------------------
+
+Analyze data sequentially through multiple passes to reconstruct
+
+(Possibly use image recovery function with parameters trained by an ANN) <-- very complex to implement
+
+
+Trimming Phase
+-----------------
+
+1) First pass - delete all invalid data that couldn't be reconstructed
+
+
+Second Reconstruction Phase
+---------------------------
+
+1) First pass - add all necessary headers that are missing in the file (i.e., SOI, EOI, SOS, etc..)
+
+Final phase:
+------------------
+
+1) Store valid data and reconstructed data in JPEG_File_Hierarchy tree
+
+2) Output recovered file

@@ -1,0 +1,16 @@
+idea for recovery of image data:
+
+Given an image defined by the matrix V where vsubi,subj = (a,b,c) = the vector usubi,subj
+
+and vsubi,subj is a pixel
+
+
+then approximation functions Osubmu(i,j,a,b,c) may be generated from the vectors given by usubi,subj through a newton apprximation
+newton series approximation and an overall approximation function O(i,j,a,b,c) may be generated through an
+interpolation process of the prior mentioned Osubmu()
+
+Lost or corrupt data can be removed prior to the generation of this function, and missing or corrupt data
+can be considered a discontinuity in this function. Then, these discontinuities can be recovered using
+the function continuity recovery procedure mentioned in another document.
+
+

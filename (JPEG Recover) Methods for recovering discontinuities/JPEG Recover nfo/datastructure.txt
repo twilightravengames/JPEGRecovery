@@ -1,0 +1,287 @@
+Data Structure Format
+
+----
+
+
+
+JPEG File
+===========
+
+SOI
+Tables/Misc.- DHT/DQT/DAC/DRI/APP_n/COM segments
+DHP Segment (Optional- only for hierarchical - shall precede the first frame; only one DHP segment shall occur in the compressed image data)
+	     DHP segment structure is identical to the frame header syntax, except that the DHP marker is used instead of the SOF_n marker
+	     figures and descriptions of B.2.2. apply, except that the quantization table destination selecto paramter is set to zero in the DHP segment
+EXP Segment (Expand reference components marker - precedes any differential SOF requiring resolution changes in the reference component)
+	     (applies only to the next frame which must be a differential frame). May be one ofthe table-specifications/miscellaneous marker segments
+	      preceding the frame header. SHALL NOT BE one of the table-specification/miscellaneous segments preceding a scan header or a DHP marker segment)
+Frame (or multiple frames in hierarchical)DQT
+EOI - always signals end of compressed image data (after all available frames never any place else)
+
+
+Note for Hierarchical: First frame for each COMPONENT in the hierarchy shall be encoded by a non-differential frame
+
+Illustration (Heirarchical)
+
+[SOI | *Tables/Misc. | DHP | Frame 1 | ... | Frame LAST | EOI ]
+
+
+Illustration (Sequential)
+
+[SOI | Frame | EOI ]
+
+
+
+Frame
+=====
+
+A frame header may be preceded by one or more table-specifications or miscellaneous marker segments. If a DNL segment
+is present, it shall immediately follow the first scan. For SEQUENTIAL DCT-based and lossless processes, each scan shall
+be interleaved within the scan. For progressive DCT-based processes each image component is only partially contained within
+any one scan. ONLY the first scan(s) for the COMPONENTS may be interleaved.
+
+Scan - scan segment
+Frame Header - SOF marker + data
+DNL Segment - DNL segment - Marks a DNL segment. Only occurs within the frame segment at the end of the FIRST scan
+Tables/Misc. - DHT/DQT/DAC/DRI/APP_n/COM segments
+
+Illustration:
+
+
+
+[ *Tables/Misc. | Frame Header | Scan | *DNL Segment | *Scan_2 | ... | *Scan LAST]
+
+
+Scan
+====
+
+A scan shall begin with a scan header and shall contain one or more entropy-coded data segments. Each scan
+header may be precededed by ONE OR MORE table-spec/misc marker segments. If restart is NOT enabled, there shall
+be only ONE entropy-coded segment (the one labeled last) and no restart markers shall be present. If restart is enabled,
+the number of entropy-coded segments is defined by the size of the iamge and the defined restart interval. In this case,
+a restart marker shall follow each entropy-coded segment EXCEPT the last one.
+
+
+RST_m: a conditional marker placed between entropy coded segments (ONLY IF RESTART IS ENABLED) There
+       are 8 unique restart markers (m = 0-7) which repeat in sequence from 0 to 7, starting with zero
+       for each scan, providing a modulo 8 restart interval count
+
+Scan Header - SOS marker plus data
+ECS - ECS segment
+RST - restart marker
+Tables/Misc. - DHT/DQT/DAC/DRI/APP_n/COM segments
+
+
+Illustration:
+
+[ *Tables/Misc | Scan Header | ECS | RST_0 | ... | ECS_LAST-1 | RST_LAST-1 | ECS_LAST ]
+
+
+Entropy-coded segment (ECS)
+======================
+
+If restart is enabled and the restart interval is defined to be Ri, each entropy coded segment except the last
+one shall contain Ri MCUs. The last one shall contain whatever number of MCUs completes the scan
+
+Illustration:
+
+(ECS_0)
+
+[ MCU_1 | MCU_2 | ... | MCU_RI ]               
+
+(ECS_LAST)
+
+[ MCU_n | MCU_n+1 | .... | MCU_last ]
+
+
+
+
+TABLE SPEC. and MISC. Types: (Interpret markers procedure interprets these)
+=========================
+Encoding Types
+
+DHT segments: DHT marker is for start of Huffman Table Definitions  (Huffman Coding)
+DAC segments: DAC marker is for start of Arithemtic Encoding Table Definitions (Arithmetic Coding)
+DQT segments: DQT marker is for Define Quantization Tables Definitions (DCT based coders)
+
+--
+DRI segments: DRI marker is define drestart interval and is used by all encoders
+--
+
+APPn segments: APPn marker is application specific
+COM segments: Comment marker
+
+
+Types of SOF (Start of Frame) Markers
+=====================
+
+(Non-differential, Huffman encoding)
+
+SOF_0 
+SOF_1
+SOF_2
+SOF_3
+
+(Differential, Huffman encoding)
+
+SOF_5
+SOF_6
+SOF_7
+
+(Non-differential, arithmetic coding)
+
+JPG
+SOF_9
+SOF_10
+SOF_11
+
+(differential, arithmetic coding)
+SOF_13
+SOF_14
+SOF_15
+
+Types of APP_n markers (FFE0 through FFEF)
+======================
+
+APP_0 and APP_1 are the most common, APP_0 being JFIF/JPG and
+APP_1 being JPEG/Exif (most common format used by digital cameras, etc.>)
+
+
+APP_0 JFIF - JFIF JPEG image 
+		AVI1 - Motion JPEG (MJPG)
+
+APP_1 EXIF Metadata, TIFF IFD format,
+	JPEG Thumbnail (160x120)	
+	Adobe XMP
+
+APP_2 ICC color profile,
+	FlashPix (also used for EXIF)
+
+APP_3 (Not common)
+	JPS Tag for Stereoscopic JPEG images
+
+APP_4 (Not common)
+APP_5 (Not common)
+APP_6 (Not common) NITF Lossless profile
+APP_7 (Not common)
+APP_8 (Not common)
+APP_9 (Not common)
+APP_10 (Not common) ActiveObject (multimedia messages/captions)
+APP_11 (Not common) HELIOS JPEG Resources (OPI Postscript)
+APP_12 Picture Info (older digicams) 
+       Photoshop Save for Web: Ducky
+APP_13 Photoshop Save As: IRB, 8BIM, IPTC
+APP_14 (Not common)
+APP_15 (Not common)
+
+Types of JPEG markers:
+======================
+
+JPG_0-JPG_6 0xFFF0-0xFFF6	(Not common)
+JPG_7/SOF48  0xFFF7		Lossless JPEG
+JPG_8/LSE    0xFFF8		Lossless JPEG Extension Parameters
+JPG_9	     0xFFF9		(Not common)
+JPG_10	     0xFFFA		(Not common)
+JPG_11	     0xFFFB		(Not common)
+JPG_12	     0xFFFC		(Not common)
+JPG_13	     0xFFFD		(Not common)
+
+
+
+* Optional 
+
+To Do:
+
+JPG_n, TEM, RES, JPG <-- locations?
+
+
+
+----------------------
+
+NOTES on images:
+
+IMG_0002::
+
+beginning APP_9 marker (most likely invalid)
+
+followed by multiple JPG markers (non-differential, arithemetic encoding)
+
+followed by two DAC markers
+ 
+followed by a RST_4 followed by a JPG_11 marker, then ~1600 bytes of data 
+and multiple JPEG_11 markers
+followed by a COM marker and then a JPEG_10 marker and a JPEG 11 marker
+
+
+then an APP_14 marker and a RST_5 marker
+
+followed by a JPG_10 marker
+
+followed by a RST_6 marker
+
+followed by an APP_9 marker
+
+followed by a JPG_13 marker
+
+followed by a APP_10 marker
+
+then an APP_0 marker and about 2,0000 bytes of unknown data
+then a COM marker
+then an APP0 marker
+
+then a JPG_8 marker
+
+then a JPG_5 marker
+
+then a JPG_7 marker
+
+then a SOF_0 marker
+
+then a COM marker
+then an APP_1 marker
+
+
+then an APP_9 marker
+
+then a DHP marker
+
+then a COM marker
+
+then an EXP marker
+then a JPG_8 marker
+then a SOF marker
+
+then a COM marker
+then a JPG_10 marker
+then an EOI marker
+then an EXP marker
+JPG_13
+JPG_12
+APP_1
+JPG_10
+APP_14
+APP_14
+SOI
+DQT
+SOF_0
+DHT
+SOS
+EOI
+SOI
+DQT
+SOF_0
+DHT
+SOS
+
+
+
+
+
+
+
+
+
+
+
+
+
